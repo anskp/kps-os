@@ -26,7 +26,7 @@ const AppIcon = ({ project, index, isHovered, onHover, onClick }: AppIconProps) 
 
   return (
     <div
-      className="app-icon relative"
+      className="app-icon group relative"
       style={{ 
         animationDelay: `${index * 0.1}s`,
         animation: 'slide-in-top 0.6s ease-out forwards'

@@ -158,7 +158,7 @@
   }
 
   .app-icon {
-    @apply glass-card p-6 cursor-pointer transition-all duration-300 hover:scale-105 group;
+    @apply glass-card p-6 cursor-pointer transition-all duration-300 hover:scale-105;
     box-shadow: 0 8px 32px hsl(220 30% 5% / 0.5);
   }
 

@@ -2,41 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Futuristic OS Design System - Premium Dark Theme with Neon Accents */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base Colors - Dark Cyber Theme */
+    --background: 220 25% 8%;
+    --foreground: 200 15% 95%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card & Glass Morphism */
+    --card: 220 20% 12%;
+    --card-foreground: 200 15% 95%;
+    --glass: 220 30% 15% / 0.8;
+    --glass-border: 240 50% 60% / 0.2;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    /* Popover */
+    --popover: 220 25% 10%;
+    --popover-foreground: 200 15% 95%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary - Neon Blue */
+    --primary: 240 100% 70%;
+    --primary-foreground: 220 25% 8%;
+    --primary-glow: 240 100% 80%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary - Neon Purple */
+    --secondary: 280 100% 70%;
+    --secondary-foreground: 220 25% 8%;
+    --secondary-glow: 280 100% 80%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Accent - Neon Pink */
+    --accent: 320 100% 70%;
+    --accent-foreground: 220 25% 8%;
+    --accent-glow: 320 100% 80%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Muted */
+    --muted: 220 20% 18%;
+    --muted-foreground: 215 15% 65%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive - Neon Red */
+    --destructive: 0 100% 70%;
+    --destructive-foreground: 220 25% 8%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders & Inputs */
+    --border: 220 30% 25%;
+    --input: 220 25% 15%;
+    --ring: 240 100% 70%;
 
-    --radius: 0.5rem;
+    /* Gradients */
+    --gradient-cosmic: linear-gradient(135deg, hsl(240 100% 70%), hsl(280 100% 70%), hsl(320 100% 70%));
+    --gradient-glass: linear-gradient(135deg, hsl(220 30% 15% / 0.9), hsl(240 50% 20% / 0.7));
+    --gradient-background: radial-gradient(ellipse at top, hsl(240 50% 15%) 0%, hsl(220 25% 8%) 50%);
+
+    /* Shadows & Glows */
+    --shadow-neon: 0 0 20px hsl(var(--primary) / 0.5);
+    --shadow-glass: 0 8px 32px hsl(220 30% 5% / 0.5);
+    --shadow-elevated: 0 20px 40px hsl(220 30% 5% / 0.8);
+
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --radius: 1rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +128,167 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+    background: var(--gradient-background);
+    overflow-x: hidden;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Glass Morphism Components */
+  .glass-card {
+    @apply backdrop-blur-xl bg-gradient-to-br from-card/90 to-card/70 border border-glass-border rounded-2xl shadow-glass;
+  }
+
+  .glass-button {
+    @apply backdrop-blur-xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-xl px-6 py-3 text-foreground font-medium transition-all duration-300 hover:shadow-neon hover:scale-105;
+  }
+
+  .neon-glow {
+    @apply shadow-neon;
+  }
+
+  .app-icon {
+    @apply glass-card p-6 cursor-pointer transition-all duration-300 hover:scale-105 hover:shadow-elevated group;
+  }
+
+  .app-icon:hover {
+    background: var(--gradient-glass);
+    box-shadow: var(--shadow-elevated), 0 0 30px hsl(var(--primary) / 0.3);
+  }
+
+  /* Starfield Animation */
+  .starfield {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .star {
+    position: absolute;
+    background: hsl(var(--primary-glow));
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+  }
+
+  .star:nth-child(2n) {
+    background: hsl(var(--secondary-glow));
+    animation-delay: 1s;
+  }
+
+  .star:nth-child(3n) {
+    background: hsl(var(--accent-glow));
+    animation-delay: 2s;
+  }
+
+  /* Mascot Animations */
+  .mascot {
+    @apply absolute z-20 pointer-events-none;
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .mascot:nth-child(2n) {
+    animation-delay: 2s;
+  }
+
+  .mascot:nth-child(3n) {
+    animation-delay: 4s;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--muted));
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--gradient-cosmic);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  .font-inter {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .font-orbitron {
+    font-family: 'Orbitron', monospace;
+  }
+
+  .text-gradient {
+    background: var(--gradient-cosmic);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .bg-glass {
+    background: var(--gradient-glass);
+    border: 1px solid hsl(var(--glass-border));
+  }
+
+  .bg-cosmic {
+    background: var(--gradient-cosmic);
+  }
+}
+
+/* Keyframe Animations */
+@keyframes twinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+  66% {
+    transform: translateY(5px) rotate(-3deg);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
   }
 }

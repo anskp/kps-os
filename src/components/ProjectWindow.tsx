@@ -1,7 +1,15 @@
 import { useState } from 'react';
-import { X, Minimize2, ExternalLink, Github } from 'lucide-react';
 import { Project } from '../data/projects';
 import { Button } from './ui/button';
+import { Card } from './ui/card';
+import { Badge } from './ui/badge';
+import { X, Minus, ExternalLink, Github } from 'lucide-react';
+
+// Import app components
+import BlockchainWallet from './apps/BlockchainWallet';
+import FitnessTracker from './apps/FitnessTracker';
+import SecurityScanner from './apps/SecurityScanner';
+import CalculatorApp from './apps/CalculatorApp';
 
 interface ProjectWindowProps {
   project: Project;
@@ -10,77 +18,124 @@ interface ProjectWindowProps {
 
 const ProjectWindow = ({ project, onClose }: ProjectWindowProps) => {
   const [isMinimized, setIsMinimized] = useState(false);
-  const IconComponent = project.icon;
 
-  const getGradientClass = () => {
-    switch (project.color) {
-      case 'primary':
-        return 'from-primary/20 to-primary/5';
-      case 'secondary':
-        return 'from-secondary/20 to-secondary/5';
-      case 'accent':
-        return 'from-accent/20 to-accent/5';
-      default:
-        return 'from-primary/20 to-primary/5';
+  const getColorClass = (color: string) => {
+    switch (color) {
+      case 'primary': return 'text-primary';
+      case 'secondary': return 'text-secondary';
+      case 'accent': return 'text-accent';
+      default: return 'text-primary';
     }
   };
 
-  const getBorderClass = () => {
-    switch (project.color) {
-      case 'primary':
-        return 'border-primary/30';
-      case 'secondary':
-        return 'border-secondary/30';
-      case 'accent':
-        return 'border-accent/30';
+  const getBorderClass = (color: string) => {
+    switch (color) {
+      case 'primary': return 'border-primary/30';
+      case 'secondary': return 'border-secondary/30';
+      case 'accent': return 'border-accent/30';
+      default: return 'border-primary/30';
+    }
+  };
+
+  const renderAppContent = () => {
+    switch (project.id) {
+      case 'blockchain-bank':
+        return <BlockchainWallet />;
+      case 'ai-fitness-coach':
+        return <FitnessTracker />;
+      case 'cybersecurity-scanner':
+        return <SecurityScanner />;
+      case 'calculator-app':
+        return <CalculatorApp />;
       default:
-        return 'border-primary/30';
+        return (
+          <div className="p-6 space-y-6">
+            <div className="flex items-center space-x-4">
+              <div className={`w-16 h-16 ${getColorClass(project.color)}`}>
+                <project.icon size={64} />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-foreground">{project.title}</h2>
+                <p className="text-muted-foreground">{project.description}</p>
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-3 text-foreground">Tech Stack</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.techStack.map((tech, index) => (
+                  <Badge key={index} variant="secondary" className="bg-muted/50">
+                    {tech}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {project.category === 'real' && (
+              <div className="flex space-x-3">
+                <Button className="acrylic-button flex items-center space-x-2">
+                  <ExternalLink className="w-4 h-4" />
+                  <span>Live Demo</span>
+                </Button>
+                <Button variant="outline" className="flex items-center space-x-2">
+                  <Github className="w-4 h-4" />
+                  <span>Source Code</span>
+                </Button>
+              </div>
+            )}
+
+            {project.category === 'fake' && (
+              <Button className="acrylic-button w-full">
+                Launch App
+              </Button>
+            )}
+          </div>
+        );
     }
   };
 
   if (isMinimized) {
     return (
-      <div className="fixed bottom-4 left-4 glass-card p-4 cursor-pointer animate-slide-in-top z-50" 
-           onClick={() => setIsMinimized(false)}>
-        <div className="flex items-center space-x-2">
-          <IconComponent className="w-4 h-4 text-primary" />
-          <span className="text-sm font-medium">{project.title}</span>
-        </div>
+      <div className="fixed bottom-4 left-4 z-50">
+        <Button
+          className="mica-card p-3 flex items-center space-x-2"
+          onClick={() => setIsMinimized(false)}
+        >
+          <project.icon size={20} />
+          <span className="text-sm">{project.title}</span>
+        </Button>
       </div>
     );
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm">
-      <div className={`glass-card max-w-2xl w-full max-h-[80vh] overflow-hidden bg-gradient-to-br ${getGradientClass()} border-2 ${getBorderClass()} animate-scale-in`}>
+    <div className="fixed inset-0 z-40 flex items-center justify-center p-4">
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" onClick={onClose} />
+      
+      <Card className={`relative w-full max-w-4xl max-h-[90vh] mica-card border ${getBorderClass(project.color)} overflow-hidden`}>
         {/* Window Header */}
-        <div className="flex items-center justify-between p-4 border-b border-glass-border">
+        <div className="flex items-center justify-between p-4 border-b border-border bg-card/50">
           <div className="flex items-center space-x-3">
-            <div className="text-2xl">{project.mascot}</div>
-            <div>
-              <h2 className="font-orbitron font-bold text-lg text-gradient">
-                {project.title}
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                {project.category === 'real' ? 'Production Project' : 'Interactive Demo'}
-              </p>
+            <div className={getColorClass(project.color)}>
+              <project.icon size={24} />
             </div>
+            <h1 className="text-lg font-semibold text-foreground">{project.title}</h1>
           </div>
           
           <div className="flex items-center space-x-2">
             <Button
-              variant="ghost"
               size="sm"
+              variant="ghost"
               onClick={() => setIsMinimized(true)}
-              className="w-8 h-8 p-0 hover:bg-muted/20"
+              className="h-8 w-8 p-0 hover:bg-muted/50"
             >
-              <Minimize2 className="w-4 h-4" />
+              <Minus className="w-4 h-4" />
             </Button>
             <Button
-              variant="ghost"
               size="sm"
+              variant="ghost"
               onClick={onClose}
-              className="w-8 h-8 p-0 hover:bg-destructive/20 hover:text-destructive"
+              className="h-8 w-8 p-0 hover:bg-destructive/20 hover:text-destructive"
             >
               <X className="w-4 h-4" />
             </Button>
@@ -88,68 +143,10 @@ const ProjectWindow = ({ project, onClose }: ProjectWindowProps) => {
         </div>
 
         {/* Window Content */}
-        <div className="p-6 overflow-y-auto">
-          {/* Project Icon */}
-          <div className="flex justify-center mb-6">
-            <div className={`w-20 h-20 flex items-center justify-center rounded-3xl bg-glass border border-glass-border`}>
-              <IconComponent className={`w-10 h-10 text-${project.color}`} />
-            </div>
-          </div>
-
-          {/* Description */}
-          <p className="text-foreground text-center mb-6 leading-relaxed">
-            {project.description}
-          </p>
-
-          {/* Tech Stack */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-foreground mb-3 text-center">Tech Stack</h3>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-3 py-1 rounded-full bg-glass border border-glass-border text-sm font-medium text-foreground"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Action Buttons */}
-          {project.category === 'real' && (
-            <div className="flex gap-3 justify-center">
-              {project.demoUrl && (
-                <Button className="glass-button">
-                  <ExternalLink className="w-4 h-4 mr-2" />
-                  Live Demo
-                </Button>
-              )}
-              {project.githubUrl && (
-                <Button variant="outline" className="bg-glass border border-glass-border hover:bg-muted/20">
-                  <Github className="w-4 h-4 mr-2" />
-                  Source Code
-                </Button>
-              )}
-            </div>
-          )}
-
-          {project.category === 'fake' && (
-            <div className="text-center">
-              <Button 
-                className="glass-button"
-                onClick={() => {
-                  // Placeholder for fake app interactions
-                  alert(`Opening ${project.title}... This is a demo interaction!`);
-                }}
-              >
-                <IconComponent className="w-4 h-4 mr-2" />
-                Launch App
-              </Button>
-            </div>
-          )}
+        <div className="overflow-auto max-h-[calc(90vh-4rem)]">
+          {renderAppContent()}
         </div>
-      </div>
+      </Card>
     </div>
   );
 };

@@ -2,67 +2,67 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Futuristic OS Design System - Premium Dark Theme with Neon Accents */
+/* Windows 11 Design System - Modern Fluent Design */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Base Colors - Dark Cyber Theme */
-    --background: 220 25% 8%;
-    --foreground: 200 15% 95%;
+    /* Base Colors - Windows 11 Theme */
+    --background: 212 13% 7%;
+    --foreground: 213 31% 91%;
 
-    /* Card & Glass Morphism */
-    --card: 220 20% 12%;
-    --card-foreground: 200 15% 95%;
-    --glass: 220 30% 15% / 0.8;
-    --glass-border: 240 50% 60% / 0.2;
+    /* Card & Mica Materials */
+    --card: 213 27% 11%;
+    --card-foreground: 213 31% 91%;
+    --mica: 212 13% 9% / 0.85;
+    --mica-border: 213 27% 84% / 0.1;
 
     /* Popover */
-    --popover: 220 25% 10%;
-    --popover-foreground: 200 15% 95%;
+    --popover: 213 27% 11%;
+    --popover-foreground: 213 31% 91%;
 
-    /* Primary - Neon Blue */
-    --primary: 240 100% 70%;
-    --primary-foreground: 220 25% 8%;
-    --primary-glow: 240 100% 80%;
+    /* Primary - Windows Blue */
+    --primary: 211 100% 50%;
+    --primary-foreground: 213 31% 91%;
+    --primary-hover: 211 100% 45%;
 
-    /* Secondary - Neon Purple */
-    --secondary: 280 100% 70%;
-    --secondary-foreground: 220 25% 8%;
-    --secondary-glow: 280 100% 80%;
+    /* Secondary - Windows Purple */
+    --secondary: 261 44% 58%;
+    --secondary-foreground: 213 31% 91%;
+    --secondary-hover: 261 44% 53%;
 
-    /* Accent - Neon Pink */
-    --accent: 320 100% 70%;
-    --accent-foreground: 220 25% 8%;
-    --accent-glow: 320 100% 80%;
+    /* Accent - Windows Teal */
+    --accent: 199 89% 48%;
+    --accent-foreground: 213 31% 91%;
+    --accent-hover: 199 89% 43%;
 
     /* Muted */
-    --muted: 220 20% 18%;
-    --muted-foreground: 215 15% 65%;
+    --muted: 213 27% 18%;
+    --muted-foreground: 213 19% 65%;
 
-    /* Destructive - Neon Red */
-    --destructive: 0 100% 70%;
-    --destructive-foreground: 220 25% 8%;
+    /* Destructive - Windows Red */
+    --destructive: 0 91% 71%;
+    --destructive-foreground: 213 31% 91%;
 
     /* Borders & Inputs */
-    --border: 220 30% 25%;
-    --input: 220 25% 15%;
-    --ring: 240 100% 70%;
+    --border: 213 27% 20%;
+    --input: 213 27% 14%;
+    --ring: 211 100% 50%;
 
-    /* Gradients */
-    --gradient-cosmic: linear-gradient(135deg, hsl(240 100% 70%), hsl(280 100% 70%), hsl(320 100% 70%));
-    --gradient-glass: linear-gradient(135deg, hsl(220 30% 15% / 0.9), hsl(240 50% 20% / 0.7));
-    --gradient-background: radial-gradient(ellipse at top, hsl(240 50% 15%) 0%, hsl(220 25% 8%) 50%);
+    /* Windows 11 Gradients */
+    --gradient-acrylic: linear-gradient(135deg, hsl(213 27% 11% / 0.8), hsl(213 27% 14% / 0.6));
+    --gradient-mica: linear-gradient(135deg, hsl(212 13% 9% / 0.9), hsl(213 27% 11% / 0.7));
+    --gradient-background: linear-gradient(180deg, hsl(212 13% 7%) 0%, hsl(213 27% 9%) 100%);
 
-    /* Shadows & Glows */
-    --shadow-neon: 0 0 20px hsl(var(--primary) / 0.5);
-    --shadow-glass: 0 8px 32px hsl(220 30% 5% / 0.5);
-    --shadow-elevated: 0 20px 40px hsl(220 30% 5% / 0.8);
+    /* Windows 11 Shadows */
+    --shadow-elevation-1: 0 1px 3px hsl(212 13% 4% / 0.3);
+    --shadow-elevation-2: 0 3px 6px hsl(212 13% 4% / 0.4);
+    --shadow-elevation-3: 0 10px 20px hsl(212 13% 4% / 0.5);
 
     /* Animations */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --transition-smooth: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --radius: 1rem;
 
@@ -128,7 +128,8 @@
   }
 
   body {
-    @apply bg-background text-foreground font-inter;
+    @apply bg-background text-foreground;
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
     background: var(--gradient-background);
     overflow-x: hidden;
   }
@@ -139,32 +140,29 @@
 }
 
 @layer components {
-  /* Glass Morphism Components */
-  .glass-card {
-    @apply backdrop-blur-xl bg-gradient-to-br from-card/90 to-card/70 border border-glass-border rounded-2xl shadow-glass;
+  /* Windows 11 Mica & Acrylic Components */
+  .mica-card {
+    @apply backdrop-blur-2xl bg-card/80 border border-mica-border rounded-lg;
+    box-shadow: var(--shadow-elevation-2);
   }
 
-  .glass-button {
-    @apply backdrop-blur-xl bg-gradient-to-r from-primary/20 to-secondary/20 border border-primary/30 rounded-xl px-6 py-3 text-foreground font-medium transition-all duration-300 hover:scale-105;
-    box-shadow: 0 8px 32px hsl(220 30% 5% / 0.5);
+  .acrylic-button {
+    @apply backdrop-blur-lg bg-primary/10 border border-primary/20 rounded-md px-4 py-2 text-foreground font-medium transition-all duration-200 hover:bg-primary/20;
+    box-shadow: var(--shadow-elevation-1);
   }
 
-  .glass-button:hover {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.5), 0 8px 32px hsl(220 30% 5% / 0.5);
+  .acrylic-button:hover {
+    box-shadow: var(--shadow-elevation-2);
   }
 
-  .neon-glow {
-    box-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  .app-tile {
+    @apply mica-card p-4 cursor-pointer transition-all duration-200 hover:scale-105 rounded-lg;
+    box-shadow: var(--shadow-elevation-1);
   }
 
-  .app-icon {
-    @apply glass-card p-6 cursor-pointer transition-all duration-300 hover:scale-105;
-    box-shadow: 0 8px 32px hsl(220 30% 5% / 0.5);
-  }
-
-  .app-icon:hover {
-    background: var(--gradient-glass);
-    box-shadow: 0 20px 40px hsl(220 30% 5% / 0.8), 0 0 30px hsl(var(--primary) / 0.3);
+  .app-tile:hover {
+    background: var(--gradient-mica);
+    box-shadow: var(--shadow-elevation-3);
   }
 
   /* Starfield Animation */

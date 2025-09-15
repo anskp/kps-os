@@ -31,7 +31,7 @@ export const projects: Project[] = [
     techStack: ['Solidity', 'Hardhat', 'Polygon', 'Thirdweb', 'Fireblocks'],
     icon: Coins,
     category: 'real',
-    mascot: '🤖',
+    mascot: '',
     color: 'primary',
     demoUrl: '#',
     githubUrl: '#'
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     techStack: ['React Native', 'TensorFlow.js', 'OpenAI API'],
     icon: Dumbbell,
     category: 'real',
-    mascot: '💪',
+    mascot: '',
     color: 'secondary',
     demoUrl: '#',
     githubUrl: '#'
@@ -55,7 +55,7 @@ export const projects: Project[] = [
     techStack: ['React Three Fiber', 'Node.js', 'Express', 'OWASP ZAP API'],
     icon: Shield,
     category: 'real',
-    mascot: '🛡️',
+    mascot: '',
     color: 'accent',
     demoUrl: '#',
     githubUrl: '#'
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     techStack: ['Next.js', 'Truvera API', 'Crossmint', 'DIDKit', 'IPFS'],
     icon: Building2,
     category: 'real',
-    mascot: '🏗️',
+    mascot: '',
     color: 'primary',
     demoUrl: '#',
     githubUrl: '#'
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     techStack: ['Python', 'Pandas', 'NumPy', 'Scikit-learn', 'Flask', 'D3.js'],
     icon: FlaskConical,
     category: 'real',
-    mascot: '🧪',
+    mascot: '',
     color: 'secondary',
     demoUrl: '#',
     githubUrl: '#'
@@ -91,7 +91,7 @@ export const projects: Project[] = [
     techStack: ['Vanilla JS', 'CSS3', 'HTML5'],
     icon: Calculator,
     category: 'fake',
-    mascot: '🔢',
+    mascot: '',
     color: 'accent',
   },
   {
@@ -101,7 +101,7 @@ export const projects: Project[] = [
     techStack: ['React', 'OpenAI API', 'WebSocket'],
     icon: Bot,
     category: 'fake',
-    mascot: '🤖',
+    mascot: '',
     color: 'primary',
   },
   {
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     techStack: ['React', 'Web Audio API', 'Canvas'],
     icon: Music,
     category: 'fake',
-    mascot: '🎵',
+    mascot: '',
     color: 'secondary',
   }
 ];

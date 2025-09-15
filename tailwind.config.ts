@@ -65,6 +65,11 @@ export default {
           ring: "hsl(var(--sidebar-ring))",
         },
       },
+      boxShadow: {
+        'neon': '0 0 20px hsl(var(--primary) / 0.5)',
+        'glass': '0 8px 32px hsl(220 30% 5% / 0.5)',
+        'elevated': '0 20px 40px hsl(220 30% 5% / 0.8)',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

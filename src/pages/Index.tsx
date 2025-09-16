@@ -1,7 +1,7 @@
-import OSLayout from '../components/OSLayout';
+import WindowsDesktop from '../components/WindowsDesktop';
 
 const Index = () => {
-  return <OSLayout />;
+  return <WindowsDesktop />;
 };
 
 export default Index;

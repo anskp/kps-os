@@ -11,7 +11,10 @@ import {
   Chrome,
   Calculator,
   Shield,
-  Wallet
+  Wallet,
+  Activity,
+  Play,
+  Settings
 } from 'lucide-react';
 import { DesktopIcon } from '../../types/desktop';
 import RecycleBin from '../apps/RecycleBin';
@@ -20,6 +23,11 @@ import TerminalApp from '../apps/TerminalApp';
 import BlockchainWallet from '../apps/BlockchainWallet';
 import SecurityScanner from '../apps/SecurityScanner';
 import CalculatorApp from '../apps/CalculatorApp';
+import TextEditor from '../apps/TextEditor';
+import ImageViewer from '../apps/ImageViewer';
+import MediaPlayer from '../apps/MediaPlayer';
+import TaskManager from '../apps/TaskManager';
+import BrowserApp from '../apps/BrowserApp';
 
 interface DesktopIconsProps {
   onOpenApp: (icon: DesktopIcon) => void;
@@ -108,6 +116,46 @@ const DesktopIcons = ({ onOpenApp }: DesktopIconsProps) => {
       component: <FileExplorer initialPath="/Videos" />,
       position: { x: 170, y: 450 },
       type: 'folder'
+    },
+    {
+      id: 'notepad',
+      title: 'Notepad',
+      icon: FileText,
+      component: <TextEditor />,
+      position: { x: 290, y: 50 },
+      type: 'app'
+    },
+    {
+      id: 'image-viewer',
+      title: 'Photos',
+      icon: Image,
+      component: <ImageViewer />,
+      position: { x: 290, y: 150 },
+      type: 'app'
+    },
+    {
+      id: 'media-player',
+      title: 'Media Player',
+      icon: Play,
+      component: <MediaPlayer />,
+      position: { x: 290, y: 250 },
+      type: 'app'
+    },
+    {
+      id: 'task-manager',
+      title: 'Task Manager',
+      icon: Activity,
+      component: <TaskManager />,
+      position: { x: 290, y: 350 },
+      type: 'app'
+    },
+    {
+      id: 'browser',
+      title: 'Browser',
+      icon: Chrome,
+      component: <BrowserApp />,
+      position: { x: 290, y: 450 },
+      type: 'app'
     }
   ];
 

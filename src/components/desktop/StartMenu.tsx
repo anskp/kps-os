@@ -9,7 +9,9 @@ import {
   Shield,
   Wallet,
   HardDrive,
-  Folder
+  Folder,
+  FileText,
+  Chrome
 } from 'lucide-react';
 
 interface StartMenuProps {
@@ -26,6 +28,8 @@ const StartMenu = ({ onClose }: StartMenuProps) => {
     { icon: Wallet, name: 'Blockchain Wallet', id: 'blockchain-wallet' },
     { icon: HardDrive, name: 'This PC', id: 'this-pc' },
     { icon: Folder, name: 'File Explorer', id: 'file-explorer' },
+    { icon: FileText, name: 'Notepad', id: 'notepad' },
+    { icon: Chrome, name: 'Browser', id: 'browser' },
   ];
 
   const recentFiles = [

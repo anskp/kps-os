@@ -54,6 +54,10 @@ export default {
           DEFAULT: "hsl(var(--glass))",
           border: "hsl(var(--glass-border))",
         },
+        mica: {
+          DEFAULT: "hsl(var(--mica))",
+          border: "hsl(var(--mica-border))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",

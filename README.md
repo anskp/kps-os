@@ -1,8 +1,8 @@
 # Welcome to your Lovable project
 
-## Project info
+## Live Demo
 
-**URL**: https://lovable.dev/projects/a65740c7-a397-4703-a8ee-fd0bb67ed4b7
+**URL**: https://kps-os.vercel.app/
 
 ## How can I edit this code?
 
